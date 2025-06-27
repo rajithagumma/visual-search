@@ -1,33 +1,29 @@
 "use client";
 import React, { useState, useEffect } from "react";
 
-function Calibration() {
-  const [lineWidth, setLineWidth] = useState(300);
-  const minWidth = 0;
-  const maxWidth = 600;
+function Calibration({onDone}) {
+  const [remSize, setRemSize] = useState(16); // default 16px
 
+  // load from localStorage
   useEffect(() => {
-    const savedWidth = localStorage.getItem("lineWidth");
-    if (savedWidth) {
-      setLineWidth(parseInt(savedWidth));
+    const savedSize = localStorage.getItem("remSize");
+    if (savedSize) {
+      setRemSize(parseInt(savedSize));
     }
   }, []);
 
+  // update font-size on change
   useEffect(() => {
-    localStorage.setItem("lineWidth", lineWidth);
-
-    const remSize = 12 + ((lineWidth - minWidth) / (maxWidth - minWidth)) * (32 - 12);
     document.documentElement.style.fontSize = `${remSize}px`;
-
     localStorage.setItem("remSize", remSize);
-  }, [lineWidth]);
-
+  }, [remSize]);
+ndnndnndnnnn n  // arrow key events
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === "ArrowRight") {
-        setLineWidth((prev) => Math.min(prev + 5, maxWidth));
+        setRemSize((prev) => Math.min(prev + 1, 32)); // max 32px
       } else if (e.key === "ArrowLeft") {
-        setLineWidth((prev) => Math.max(prev - 5, minWidth));
+        setRemSize((prev) => Math.max(prev - 1, 12)); // min 12px
       }
     };
 
@@ -39,19 +35,43 @@ function Calibration() {
 
   return (
     <div className="calibration-container">
-      <h2>Calibration</h2>
+      <div className="intro-instruction-div">
+      <h1>Before starting:</h1>
+      <ol>
+        <li>
+          Set your browsing window to Full Screen (you can do this by pressing
+          F11 on Windows and Linux or the key combination CTRL+CMD+F on a Mac;
+          if that does not work, in Chrome you can go to the View menu and click
+          Enter Full Screen).
+        </li>
+        <li>
+          Minimize possible distractions (TV, phone, etc.) that may affect your
+          performance during the test.
+        </li>
+        <li>
+          Position yourself at arm's length from the monitor and try to maintain
+          this viewing distance throughout the experiment.
+        </li>
+      </ol>
+      <button className="ok-btn" onClick={onDone}>
+        Done
+      </button>
+    </div>
 
       <p className="description">
-        Use your <strong>left/right arrow keys</strong> to adjust the line’s length and see the font size change.
+        Use your <strong>left/right arrow keys</strong> to adjust font size.
       </p>
 
-      <div className="calibration-line" style={{ width: `${lineWidth}px` }}></div>
+      <div
+        className="calibration-line"
+        style={{ width: `${(remSize - 12) * 20}px` }}
+      ></div>
 
-      <div className="value-display">Line Length: {lineWidth}px</div>
+      <div className="value-display">Font Size: {remSize}px</div>
 
       <p className="text">This is 1.2rem text</p>
 
-      <button className="ok-btn">OK</button>
+      <button className="ok-btn" onClick={onDone}>OK</button>
     </div>
   );
 }
@@ -66,50 +86,9 @@ export default Calibration;
 
 
 
-// "use client";
-// import React, { useState, useEffect } from "react";
 
-// function Calibration() {
-//   const [remSize, setRemSize] = useState(16);
 
-//   useEffect(() => {
-//     const savedSize = localStorage.getItem("remSize");
-//     if (savedSize) {
-//       setRemSize(parseInt(savedSize));
-//     }
-//   }, []);
 
-//   useEffect(() => {
-//     document.documentElement.style.fontSize = `${remSize}px`;
-//     localStorage.setItem("remSize", remSize);
-//   }, [remSize]);
 
-//   const handleSliderChange = (e) => {
-//     setRemSize(e.target.value);
-//   };
 
-//   return (
-//     <div className="Calibration-div">
-//       <h1>Dynamic rem Size Controller</h1>
 
-//       <div className="control">
-//         <label htmlFor="remSlider">Base rem size: {remSize}px</label>
-//         <input
-//           type="range"
-//           id="remSlider"
-//           min="10"
-//           max="30"
-//           value={remSize}
-//           onChange={handleSliderChange}
-//         />
-//       </div>
-
-//       <div className="box">This box is 10rem × 10rem</div>
-//       <p className="text">This text is 1.2rem</p>
-
-//       <button className="calibration-btn">OK</button>
-//     </div>
-//   );
-// }
-
-// export default Calibration;
