@@ -41,6 +41,13 @@ body {
   line-height: 1.5;
 }
 
+.intro-instruction-div p {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  color: #333;
+  line-height: 1.5;
+}
+
 .ok-btn {
   padding: 0.7rem 2rem;
   font-size: 1rem;

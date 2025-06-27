@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 
-function Calibration({onDone}) {
+function Calibration({ onDone }) {
   const [remSize, setRemSize] = useState(16); // default 16px
 
   // load from localStorage
@@ -17,7 +17,7 @@ function Calibration({onDone}) {
     document.documentElement.style.fontSize = `${remSize}px`;
     localStorage.setItem("remSize", remSize);
   }, [remSize]);
-ndnndnndnnnn n  // arrow key events
+  // arrow key events
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === "ArrowRight") {
@@ -36,59 +36,39 @@ ndnndnndnnnn n  // arrow key events
   return (
     <div className="calibration-container">
       <div className="intro-instruction-div">
-      <h1>Before starting:</h1>
-      <ol>
-        <li>
-          Set your browsing window to Full Screen (you can do this by pressing
-          F11 on Windows and Linux or the key combination CTRL+CMD+F on a Mac;
-          if that does not work, in Chrome you can go to the View menu and click
-          Enter Full Screen).
-        </li>
-        <li>
-          Minimize possible distractions (TV, phone, etc.) that may affect your
-          performance during the test.
-        </li>
-        <li>
-          Position yourself at arm's length from the monitor and try to maintain
-          this viewing distance throughout the experiment.
-        </li>
-      </ol>
-      <button className="ok-btn" onClick={onDone}>
-        Done
-      </button>
-    </div>
-
-      <p className="description">
-        Use your <strong>left/right arrow keys</strong> to adjust font size.
-      </p>
-
+        <h1>Calibration</h1>
+        <ol>
+          <p>
+            OK CalibrationTo ensure that stimuli and other visual elements in
+            the study are presented at their intended size, it's crucial that
+            you perform the following step. This is a standard screen
+            calibration procedure, that does not involve any data collection
+            from your card or other items. Please find an object that matches
+            the size of a typical credit card, which could be anything from an
+            actual debit or credit card to a driver's license or an ID{" "}
+          </p>
+          <p>
+            card. The key is that the object's dimensions are identical to those
+            of a standard credit card.
+          </p>
+          <p>
+            Place the longer side of your card-sized object against the screen,
+            aligning it with the orange line displayed. Next, use the left and
+            right arrow keys on your keyboard to adjust the length of this
+            orange line until it precisely matches the length of your card-sized
+            item. When done, click the OK button.
+          </p>
+        </ol>
+      </div>
       <div
         className="calibration-line"
         style={{ width: `${(remSize - 12) * 20}px` }}
       ></div>
-
-      <div className="value-display">Font Size: {remSize}px</div>
-
-      <p className="text">This is 1.2rem text</p>
-
-      <button className="ok-btn" onClick={onDone}>OK</button>
+      <button className="ok-btn" onClick={onDone}>
+        OK
+      </button>
     </div>
   );
 }
 
 export default Calibration;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
