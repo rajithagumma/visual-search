@@ -1,0 +1,190 @@
+.calibration-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3rem;
+  font-family: sans-serif;
+  background-color: #fff;
+  min-height: 100vh;
+  justify-content: center;
+}
+
+h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.description {
+  text-align: center;
+  max-width: 600px;
+  font-size: 1rem;
+  color: #444;
+  margin-bottom: 2rem;
+}
+
+.calibration-line {
+  height: 8px;
+  background-color: orange;
+  border-radius: 4px;
+  margin: 2rem 0;
+  transition: width 0.2s;
+  align-self: flex-start;
+}
+
+.value-display {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+}
+
+.ok-btn {
+  padding: 0.7rem 2rem;
+  font-size: 1rem;
+  background-color: #444;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  margin-top: 2rem;
+  cursor: pointer;
+}
+
+.ok-btn:hover {
+  background-color: #222;
+}
+
+
+
+
+
+
+
+/* html {
+  /* font-size: 100px; default base rem */
+/* } */
+
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background-color: #f8f8f8;
+}
+
+.Calibration-div {
+  padding: 2rem;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.control {
+  margin-bottom: 2rem;
+}
+
+#remSlider {
+  width: 300px;
+  margin-left: 1rem;
+}
+
+.box {
+  width: 10rem;
+  height: 10rem;
+  background-color: #ff7f50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  color: white;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.text {
+  font-size: 1.2rem;
+}
+
+.calibration-btn {
+  padding: 20px 50px;
+  border: 2px solid dimgray;
+}
+
+
+
+
+
+
+
+
+
+
+
+.shape {
+  width: 50px;
+  height: 50px;
+  margin: 5px;
+  display: inline-block;
+}
+
+.redTriangle {
+  width: 0;
+  height: 0;
+  border-left: 25px solid transparent;
+  border-right: 25px solid transparent;
+  border-bottom: 50px solid red;
+}
+
+.redSquare {
+  background-color: red;
+}
+
+.blueTriangle {
+  width: 0;
+  height: 0;
+  border-left: 25px solid transparent;
+  border-right: 25px solid transparent;
+  border-bottom: 50px solid blue;
+}
+
+.blueSquare {
+  background-color: blue;
+}
+
+
+
+.form{
+  border: 1px solid black;
+}
+.start{
+  text-align: center;
+}
+#startButton{
+  font-weight: 700;
+  font-size: larger;
+  height:80px;
+  width:20%;
+  border-radius:15px;
+}
+.practice{
+  width:100vw;
+}
+.practice img{
+  margin-top:30px;
+  width:50% !important;
+  
+}
+.startTest{
+  margin-top:15%;
+  font-size: x-large;
+  text-align: center;
+
+}
+#startTestButton{
+  /* padding:5px; */
+  margin:12% 0px;
+  height:70px;
+  width:14%;
+  border-radius:15px;
+  /* font-weight: 700; */
+  font-size: larger;
+  background-color: white;
+
+}
