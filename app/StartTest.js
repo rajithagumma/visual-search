@@ -1,4 +1,4 @@
-export default function StartTest(){
+export default function StartTest({onDone}){
     return (
         <div className='startTest'>
             <h2>End of practice</h2>
@@ -7,7 +7,7 @@ export default function StartTest(){
             <p>Sometimes there will be more shapes, sometimes less.</p>
             <p>In all cases, your task is to find the red triangle.</p>
             <p>Please prioritize accuracy over speed.</p>
-            <button id="startTestButton">START TEST</button>
+            <button id="startTestButton" onClick={onDone}>START TEST</button>
         </div>
     )
 }

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './ParticipantInf.css';
 
-export default function ParticipantInf() {
+export default function ParticipantInf({onDone}) {
     const [formData,setFormData]=useState({name:'',age:0,gender:''});
     const [errors,setErrors]=useState({});
     const handleChange=(e)=>{
@@ -54,7 +54,7 @@ export default function ParticipantInf() {
                 {errors.gender && <p className="error">{errors.gender}</p>}
             </div>
 
-            <button className="next-button">NEXT</button>
+                <button className="next-button" onClick={onDone}>NEXT</button>
             </div>
         </form>
   );
