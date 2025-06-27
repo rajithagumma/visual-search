@@ -143,7 +143,7 @@ function GameContainer() {
       </div>
 
       <button className="next-btn" onClick={showNextSlide}>
-        Next
+        Next Button
       </button>
     </div>
   );
