@@ -1,6 +1,21 @@
 import React from "react";
-
+function removeDuplicates(results){
+  const clean={};
+  for (const [key,entries] of Object.entries(results)){
+    const seen=new Set();
+    clean[key]=[];
+    for (const entry of entries){
+      if (!seen.has(entry.key1)){
+        seen.add(entry.key1);
+        clean[key].push(entry);
+      }
+    }
+  }
+  return clean;
+}
 export default function ResultTable({ result }) {
+  console.log(result);
+  const cleanresult=removeDuplicates(result);
   if (!result || Object.keys(result).length === 0) {
     return <p>No results to display.</p>;
   }
@@ -18,7 +33,7 @@ export default function ResultTable({ result }) {
           </tr>
         </thead>
         <tbody>
-          {Object.entries(result).sort().map(([key, data]) => {
+          {Object.entries(cleanresult).sort().map(([key, data]) => {
             const totalCorrect = data.reduce((sum, d) => sum + d.isCorrect, 0);
             const avgScore = totalCorrect / data.length;
 
@@ -27,7 +42,7 @@ export default function ResultTable({ result }) {
             return (
               <tr key={key}>
                 <td>{key}</td>
-                <td>{avgScore.toFixed(2)}</td>
+                <td>{avgScore}</td>
                 <td>{Math.round(avgTime)}</td>
               </tr>
             );
