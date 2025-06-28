@@ -1,5 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import ResultTable from "./ResultTable";
 
 function GameContainer() {
   const conditions = ["present", "absent"];
@@ -9,7 +10,9 @@ function GameContainer() {
 
   const [slides, setSlides] = useState([]);
   const [currentSlide, setCurrentSlide] = useState(0);
-
+  const [result,setResults]= useState({});
+  const [gameOver, setGameOver] = useState(false);
+  const [startTime, setStartTime] = useState(null);
   useEffect(() => {
     const newSlides = [];
     let slideNumber = 1;
@@ -64,17 +67,50 @@ function GameContainer() {
     newSlides.sort(() => Math.random() - 0.5);
     setSlides(newSlides);
   }, []);
+useEffect(()=>{
+  const handleKeyDown=(event)=>{
+    const userAnswer=event.key.toLowerCase();
+    if (userAnswer==='y' || userAnswer==='n'){
+      const reactionTime = performance.now() - startTime;
+      const current= slides[currentSlide];
+      const actualAnswer= current.shapes.includes("redTriangle") ? "y":"n";
+      const isCorrect=userAnswer===actualAnswer? 1:0;
+      const key=`${current.condition}-${current.type}-${current.numberOfObjects}`;
 
-  const showNextSlide = () => {
-    if (currentSlide < slides.length - 1) {
-      setCurrentSlide(currentSlide + 1);
-    } else {
-      alert("Game Over!");
+      setResults((prev)=>{
+        const updated={...prev};
+        if (!updated[key]) updated[key]=[];
+        updated[key].push({
+          isCorrect,
+          reactionTime:Math.round(reactionTime)
+        })
+        return updated;
+      })
+      if (currentSlide<slides.length-1){
+        setCurrentSlide(currentSlide+1);
+      }
+      else{
+        setGameOver(true); 
+      }
     }
-  };
+  }
+
+    window.addEventListener("keydown",handleKeyDown)
+    return ()=>{
+      window.removeEventListener("keydown",handleKeyDown);
+    }
+  },[currentSlide,slides]);
+useEffect(()=>{
+  if (slides.length>0 && currentSlide<slides.length){
+    setStartTime(performance.now())
+  }
+},currentSlide,slides)
 
   if (slides.length === 0) {
     return <h2>Loading Slides...</h2>;
+  }
+  if (gameOver){
+    return <ResultTable result={result} />;
   }
 
   const current = slides[currentSlide];
@@ -120,15 +156,6 @@ function GameContainer() {
 
   return (
     <div className="game-container">
-      <h2>
-        Slide {current.slideNumber} / {slides.length}
-      </h2>
-      <p>
-        Condition: <strong>{current.condition}</strong> | Type:{" "}
-        <strong>{current.type}</strong> | Objects:{" "}
-        <strong>{current.numberOfObjects}</strong>
-      </p>
-
       <div className="shape-box">
         {current.shapes.map((shape, index) => (
           <div
@@ -142,9 +169,9 @@ function GameContainer() {
         ))}
       </div>
 
-      <button className="next-btn" onClick={showNextSlide}>
+      {/* <button className="next-btn" onClick={showNextSlide}>
         Next
-      </button>
+      </button> */}
     </div>
   );
 }
