@@ -71,7 +71,7 @@ useEffect(()=>{
   const handleKeyDown=(event)=>{
     const userAnswer=event.key.toLowerCase();
     if (userAnswer==='y' || userAnswer==='n'){
-      const reactionTime = performance.now() - startTime;
+      const reactionTime = (performance.now() - startTime);
       const current= slides[currentSlide];
       const actualAnswer= current.shapes.includes("redTriangle") ? "y":"n";
       const isCorrect=userAnswer===actualAnswer? 1:0;
@@ -104,7 +104,7 @@ useEffect(()=>{
   if (slides.length>0 && currentSlide<slides.length){
     setStartTime(performance.now())
   }
-},currentSlide,slides)
+},[currentSlide,slides])
 
   if (slides.length === 0) {
     return <h2>Loading Slides...</h2>;
