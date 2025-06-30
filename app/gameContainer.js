@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import ResultTable from "./ResultTable";
+import './gameContainer.css'
 
 function GameContainer() {
   const conditions = ["present", "absent"];

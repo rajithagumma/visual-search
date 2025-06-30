@@ -1,3 +1,4 @@
+import './startPractice.css'
 export default function StartPractice({ onDone }) {
   return (
     <div className="start">

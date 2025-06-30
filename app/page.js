@@ -3,9 +3,9 @@ import { useState } from "react";
 import IntroductionPage from "./introductionPage";
 import Calibration from "./Calibration.js";
 import ParticipantInf from "./ParticipantInf";
-import StartPractice from "./StartPractice.js";
-import Practice from "./Practice.js";
-import StartTest from "./StartTest.js";
+import StartPractice from "./startPractice.js";
+import Practice from "./practice.js";
+import StartTest from "./startTest.js";
 import GameContainer from "./gameContainer";
 
 export default function Home() {

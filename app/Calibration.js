@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import './calibration.css'
 
 function Calibration({ onDone }) {
   const [remSize, setRemSize] = useState(16); // default 16px
@@ -35,7 +36,7 @@ function Calibration({ onDone }) {
 
   return (
     <div className="calibration-container">
-      <div className="intro-instruction-div">
+      <div className="intro-instruction-div-sec">
         <h1>Calibration</h1>
         <ol>
           <p>
@@ -59,14 +60,15 @@ function Calibration({ onDone }) {
             item. When done, click the OK button.
           </p>
         </ol>
-      </div>
+      {/* </div> */}
       <div
         className="calibration-line"
         style={{ width: `${(remSize - 12) * 20}px` }}
       ></div>
       <button className="ok-btn" onClick={onDone}>
         OK
-      </button>
+        </button>
+        </div>
     </div>
   );
 }
