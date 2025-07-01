@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import './practice.css';
+import "./practice.css";
 
 export default function Practice({ onDone }) {
   const array = [
@@ -8,7 +8,7 @@ export default function Practice({ onDone }) {
     { src: "/Images/Stim.058.png", res: "Y" },
   ];
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [feedbackType, setFeedbackType] = useState(""); // "correct" or "incorrect"
+  const [feedbackType, setFeedbackType] = useState("");
   const [showFeedback, setShowFeedback] = useState(false);
 
   useEffect(() => {
@@ -43,12 +43,21 @@ export default function Practice({ onDone }) {
     <div className="practice-container">
       <div className="instructions">
         <h1>Visual Search</h1>
-        <p>Find the <span className="highlight">red triangle!</span></p>
-        <p>Press <span className="key">Y</span> for Yes or <span className="key">N</span> for No.</p>
+        <p>
+          Find the <span className="highlight">red triangle!</span>
+        </p>
+        <p>
+          Press <span className="key">Y</span> for Yes or{" "}
+          <span className="key">N</span> for No.
+        </p>
       </div>
 
       <div className="image-section">
-        <img src={array[currentIndex].src} alt={`img-${currentIndex}`} />
+        {array[currentIndex] && array[currentIndex].src ? (
+          <img src={array[currentIndex].src} alt={`img-${currentIndex}`} />
+        ) : (
+          <p>Image not found</p>
+        )}
       </div>
 
       {showFeedback && (

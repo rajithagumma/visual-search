@@ -1,9 +1,19 @@
-import React, { useState } from "react";
+"use client";
+import React, { useState, useEffect } from "react";
 import "./participantInf.css";
 
 export default function ParticipantInf({ onDone }) {
   const [formData, setFormData] = useState({ name: "", age: "", gender: "" });
   const [errors, setErrors] = useState({});
+
+  // Ensure font size from localStorage is applied
+  useEffect(() => {
+    const savedSize = localStorage.getItem("remSize");
+    if (savedSize) {
+      document.documentElement.style.fontSize = `${savedSize}px`;
+    }
+  }, []);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -11,6 +21,7 @@ export default function ParticipantInf({ onDone }) {
       [name]: value,
     }));
   };
+
   const validate = () => {
     const newErrors = {};
     if (!formData.name.trim()) newErrors.name = "Name is Required";
@@ -20,6 +31,7 @@ export default function ParticipantInf({ onDone }) {
     if (!formData.gender) newErrors.gender = "Please select a gender";
     return newErrors;
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const validateErrors = validate();
@@ -30,66 +42,61 @@ export default function ParticipantInf({ onDone }) {
       setErrors(validateErrors);
     }
   };
+
   return (
     <form onSubmit={handleSubmit}>
       <div className="participant-container">
         <div className="participant-box">
           <h2>Participant Information</h2>
           <label htmlFor="name">Name:</label>
-          <br></br>
           <input
             type="text"
             name="name"
             placeholder="Enter Your Name"
             value={formData.name}
             onChange={handleChange}
-          ></input>
+          />
           {errors.name && <p className="error">{errors.name}</p>}
-          <br></br>
-          <br></br>
+
           <label htmlFor="age">Age:</label>
-          <br></br>
           <input
             type="number"
             id="age"
             name="age"
-            placeholder="enetr your age"
+            placeholder="Enter your age"
             value={formData.age}
             onChange={handleChange}
-          ></input>
+          />
           {errors.age && <p className="error">{errors.age}</p>}
-          <br></br>
-          <br></br>
-          <div>
-            <label>What is your gender identity?</label>
-            <div className="gender-container">
-              <label htmlFor="man">Man</label>
-              <input
-                type="radio"
-                id="man"
-                name="gender"
-                value="man"
-                onChange={handleChange}
-              />
-              <label htmlFor="woman">Woman</label>
-              <input
-                type="radio"
-                id="woman"
-                name="gender"
-                value="woman"
-                onChange={handleChange}
-              />
-              <label htmlFor="other">Other</label>
-              <input
-                type="radio"
-                id="other"
-                name="gender"
-                value="other"
-                onChange={handleChange}
-              />
-            </div>
-            {errors.gender && <p className="error">{errors.gender}</p>}
-          </div>{" "}
+
+          <label>What is your gender identity?</label>
+          <div className="gender-container">
+            <label htmlFor="man">Man</label>
+            <input
+              type="radio"
+              id="man"
+              name="gender"
+              value="man"
+              onChange={handleChange}
+            />
+            <label htmlFor="woman">Woman</label>
+            <input
+              type="radio"
+              id="woman"
+              name="gender"
+              value="woman"
+              onChange={handleChange}
+            />
+            <label htmlFor="other">Other</label>
+            <input
+              type="radio"
+              id="other"
+              name="gender"
+              value="other"
+              onChange={handleChange}
+            />
+          </div>
+          {errors.gender && <p className="error">{errors.gender}</p>}
         </div>
         <button className="next-button">NEXT</button>
       </div>

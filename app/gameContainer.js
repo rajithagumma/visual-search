@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import ResultTable from "./ResultTable";
+import ResultTable from "./resultTable.js";
 import './gameContainer.css'
 
 function GameContainer() {
@@ -14,6 +14,7 @@ function GameContainer() {
   const [result,setResults]= useState({});
   const [gameOver, setGameOver] = useState(false);
   const [startTime, setStartTime] = useState(null);
+  const testRef=React.useRef({});
   useEffect(() => {
     const newSlides = [];
     let slideNumber = 1;
@@ -55,6 +56,7 @@ function GameContainer() {
               slideNumber,
               condition,
               type,
+              trialId:repeat,
               numberOfObjects: number,
               shapes: slideShapes,
             });
@@ -77,16 +79,20 @@ useEffect(()=>{
       const actualAnswer= current.shapes.includes("redTriangle") ? "y":"n";
       const isCorrect=userAnswer===actualAnswer? 1:0;
       const key=`${current.condition}-${current.type}-${current.numberOfObjects}`;
-
-      setResults((prev)=>{
-        const updated={...prev};
-        if (!updated[key]) updated[key]=[];
-        updated[key].push({
-          isCorrect,
-          reactionTime:Math.round(reactionTime)
+      const key1 = `slide-${current.slideNumber}`;
+      if (!testRef.current[key1]){
+        setResults((prev)=>{
+          const updated={...prev};
+          if (!updated[key]) updated[key]=[];
+          updated[key].push({
+            isCorrect,
+            reactionTime: Math.round(reactionTime),
+            key1
+          })
+          return updated;
         })
-        return updated;
-      })
+        testRef.current[key1]=true;
+      }
       if (currentSlide<slides.length-1){
         setCurrentSlide(currentSlide+1);
       }
@@ -169,10 +175,6 @@ useEffect(()=>{
           />
         ))}
       </div>
-
-      {/* <button className="next-btn" onClick={showNextSlide}>
-        Next
-      </button> */}
     </div>
   );
 }

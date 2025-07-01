@@ -1,86 +1,5 @@
-/* .calibration-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 3rem;
-  min-height: 100vh;
-  justify-content: center;
-  width: 90%;
-  max-width: 60rem;
-  margin: 0rem auto;
-}
-
-.calibration-div{
-  width: 90%;
-  max-width: 60rem;
-  padding: 2rem;
-  margin: 6rem auto;
-  border-radius: 0.5rem;
-  background-color: #fff;
-  min-height: 40vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  color: #2f3542;
-}
-
-.calibration-div h1 {
-  text-align: center;
-  margin-bottom: 1.5rem;
-}
-
-h1 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-}
-
-.description {
-  text-align: center;
-  max-width: 600px;
-  font-size: 1rem;
-  color: #444;
-  margin-bottom: 2rem;
-}
-
-.calibration-line {
-  height: 8px;
-  background-color: orange;
-  border-radius: 4px;
-  margin: 2rem 16rem;
-  transition: width 0.2s;
-  align-self: flex-start;
-}
-
-.value-display {
-  margin-top: 0.5rem;
-  font-size: 1rem;
-}
-
-.text {
-  font-size: 1.2rem;
-} */
-
-
-
-
-
-
-
-
-
-
-/* Global styles */
-
-
-
-
-/* Calibration container */
 .calibration-container {
   max-width: 860px;
-  /* margin: 50px auto; */
-  /* padding: 0px 20px; */
-  /* background-color: var(--card-bg); */
-  /* box-shadow: 0 4px 8px var(--shadow-color); */
   border-radius: 10px;
   text-align: center;
   margin: 75px auto;
@@ -116,7 +35,6 @@ h1 {
   color: var(--text-color);
 }
 
-/* Calibration line */
 .calibration-line {
   height: 8px;
   background-color: orange;
@@ -131,7 +49,6 @@ h1 {
   font-size: 1rem;
 }
 
-/* OK Button */
 .ok-btn {
   padding: 0.7rem 2rem;
   font-size: 1rem;
